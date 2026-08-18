@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Confluence Desk" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="assets/icon-192.png" />
+<title>Confluence Desk — AO Divergence × Fibonacci</title>
+<meta name="description" content="Sinyal trading otomatis untuk XAUUSD, EURUSD, GBPUSD, dan BTCUSD berdasarkan divergensi Awesome Oscillator, Fibonacci, trend EMA dan RSI, dengan data real-time dari TwelveData." />
+<link rel="canonical" href="https://www.hsnsf11h.my.id/" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Confluence Desk" />
+<meta property="og:title" content="Confluence Desk — Sinyal Trading XAUUSD, EURUSD, GBPUSD & BTCUSD" />
+<meta property="og:description" content="Sinyal trading otomatis dari konfluensi AO Divergence, Fibonacci, trend EMA dan RSI, data real-time TwelveData." />
+<meta property="og:image" content="assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="id_ID" />
+<meta property="og:url" content="https://www.hsnsf11h.my.id/" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Confluence Desk — Trading Signal Terminal" />
+<meta name="twitter:description" content="Sinyal XAUUSD, EURUSD, GBPUSD & BTCUSD berbasis konfluensi AO Divergence × Fibonacci × EMA × RSI." />
+<meta name="twitter:image" content="assets/og-image.png" />
+
+<meta name="theme-color" content="#0a0c11" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<script>
+  // Terapkan tema tersimpan sedini mungkin, sebelum CSS/paint pertama,
+  // supaya tidak ada kedipan (flash) dari dark ke light saat load.
+  (function () {
+    try {
+      var t = localStorage.getItem("cd_theme");
+      document.documentElement.setAttribute("data-theme", t === "light" ? "light" : "dark");
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<div class="app-shell">
+
+  <!-- Sidebar (desktop) / bottom nav (mobile) -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <svg class="brand-mark" width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="14" cy="14" r="12.5" stroke="var(--gold)" stroke-width="1.5"/>
+        <path d="M7 16.5L11.5 10L15 14.5L21 7.5" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="21" cy="7.5" r="1.6" fill="var(--gold)"/>
+      </svg>
+      <div class="sidebar-brand-text">
+        <span class="brand-title">Confluence Desk</span>
+        <span class="brand-sub" data-i18n="brandSub">Mesin AO Divergence × Fibonacci</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav" id="sidebarNav">
+      <button type="button" class="nav-item active" data-view="dashboard">
+        <svg viewBox="0 0 22 22" width="19" height="19"><path d="M3 13.5l4-5 3.5 3 5.5-7 3 3.5" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 17.5h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span data-i18n="navDashboard">Dasbor</span>
+      </button>
+      <button type="button" class="nav-item" data-view="education">
+        <svg viewBox="0 0 22 22" width="19" height="19"><path d="M4 5.5c2.2-1.3 5-1.3 7 0 2-1.3 4.8-1.3 7 0v11c-2.2-1.3-5-1.3-7 0-2-1.3-4.8-1.3-7 0v-11z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M11 5.5v11" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span data-i18n="navEducation">Belajar Trading</span>
+      </button>
+      <button type="button" class="nav-item" data-view="news">
+        <svg viewBox="0 0 22 22" width="19" height="19"><rect x="3.5" y="4.5" width="15" height="13" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M6.5 8h6M6.5 11h9M6.5 14h9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span data-i18n="navNews">Berita</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button type="button" class="btn-ghost sidebar-settings" id="openSettings" data-i18n="btnSettings">Pengaturan</button>
+    </div>
+  </aside>
+
+  <div class="main-col">
+
+    <header class="topbar">
+      <div class="topbar-status" id="connectionStatus">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusText" data-i18n="statusIdle">Belum terhubung</span>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="btn-icon" id="langToggle" type="button" title="Switch language">
+          <span id="langToggleLabel">EN</span>
+        </button>
+        <button class="btn-icon" id="themeToggle" type="button">
+          <span id="themeToggleIcon">☾</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="desk">
+      <section class="hero" id="top">
+        <div>
+          <span class="eyebrow">MARKET INTELLIGENCE DASHBOARD</span>
+          <h1>CONFLUENCE DESK</h1>
+          <p>AO Divergence × Fibonacci</p>
+          <small>Pantau confluence market dalam satu layar.</small>
+        </div>
+        <div class="hero-disclaimer">Analisis bersifat informatif dan bukan nasihat keuangan.</div>
+      </section>
+
+      <!-- ============ DASHBOARD VIEW ============ -->
+      <section class="view" id="view-dashboard">
+        <section class="control-strip">
+          <div class="control-group">
+            <label for="timeframeSelect" data-i18n="labelTimeframe">Timeframe</label>
+            <select id="timeframeSelect">
+              <option value="1min">M1</option>
+                            <option value="5min">M5</option>
+              <option value="15min">M15</option>
+              <option value="30min">M30</option>
+              <option value="1h" selected>H1</option>
+              <option value="4h">H4</option>
+                          </select>
+          </div>
+          <div class="control-group">
+            <label for="refreshSelect" data-i18n="labelRefresh">Refresh</label>
+            <select id="refreshSelect">
+              <option value="0" data-i18n="optRefreshManual">Manual</option>
+              <option value="30000" data-i18n="opt30s">30 detik</option>
+              <option value="60000" selected data-i18n="opt1m">1 menit</option>
+              <option value="300000" data-i18n="opt5m">5 menit</option>
+            </select>
+          </div>
+          <button class="btn-primary" id="refreshNow" type="button" data-i18n="btnRefreshNow">Tarik Data Terbaru</button>
+          <div class="last-update" id="lastUpdate" data-i18n="lastUpdateNone">Belum ada data</div>
+        </section>
+
+        <section class="section-heading" id="market"><div><span class="eyebrow">LIVE MARKET</span><h2>MARKET OVERVIEW</h2></div><span class="section-note">XAUUSD · EURUSD · GBPUSD · BTCUSD</span></section>
+        <section class="instrument-grid" id="instrumentGrid"></section>
+
+        <section class="dashboard-signal-grid" id="signals">
+          <div class="focus-card"><div class="card-head"><div><span class="eyebrow">CONFLUENCE SIGNAL</span><h2>Signal Engine</h2></div><span class="focus-state">WAITING</span></div><p>AO Divergence × Fibonacci × Market Structure</p><div class="signal-checks"><span>AO Divergence ✓</span><span>Fibonacci Zone ✓</span><span>Market Structure ✓</span></div></div>
+          <div class="focus-card compact"><div class="card-head"><div><span class="eyebrow">SYSTEM</span><h2>Data Health</h2></div><span class="status-pill">Secure Backend</span></div><p>Provider dipilih otomatis oleh backend. Tidak ada API key di browser.</p></div>
+        </section>
+
+        <section class="log-panel">
+          <div class="log-panel-head">
+            <h2 data-i18n="logTitle">Riwayat Sinyal</h2>
+            <span class="log-panel-hint" data-i18n="logHint">Sinyal baru muncul saat divergensi AO bertemu zona Fibonacci</span>
+          </div>
+          <div class="signal-log" id="signalLog">
+            <p class="log-empty" data-i18n="logEmpty">Belum ada sinyal tercatat pada sesi ini.</p>
+          </div>
+        </section>
+
+        <footer class="desk-footer">
+          <p data-i18n="footerDisclaimer">Analisis bersifat informatif dan bukan nasihat keuangan.</p><p class="creator-credit">CONFLUENCE DESK · Built by Hasan Saefulah · © 2026</p>
+        </footer>
+      </section>
+
+      <!-- ============ EDUCATION VIEW ============ -->
+      <section class="view hidden" id="view-education">
+        <div class="view-header">
+          <h1 data-i18n="eduTitle">Belajar Trading dari Nol</h1>
+          <p data-i18n="eduHint">Materi dasar sebelum mengandalkan sinyal — pahami dulu konsepnya, baru gunakan dasbor.</p>
+          <div class="edu-progress">
+            <div class="edu-progress-track"><div class="edu-progress-fill" id="eduProgressBar"></div></div>
+            <span id="eduProgressText"></span>
+          </div>
+        </div>
+        <div class="lesson-list" id="educationList"></div>
+      </section>
+
+      <!-- ============ NEWS VIEW ============ -->
+      <section class="view hidden" id="view-news">
+        <div class="view-header">
+          <h1 data-i18n="newsTitle">Berita Pasar Terbaru</h1>
+          <p data-i18n="newsHint">Berita ekonomi dan pasar dari KONTAN.CO.ID.</p>
+          <button class="btn-ghost" id="newsRefresh" type="button" data-i18n="newsRefresh">Muat Ulang Berita</button>
+        </div>
+        <div class="news-list" id="newsList"></div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- Mobile bottom nav -->
+<nav class="bottom-nav" id="bottomNav">
+  <button type="button" class="bottom-nav-item active" data-scroll="top"><span>⌂</span><span>Home</span></button>
+  <button type="button" class="bottom-nav-item" data-scroll="market"><span>◈</span><span>Market</span></button>
+  <button type="button" class="bottom-nav-item" data-scroll="signals"><span>◎</span><span>Signals</span></button>
+  <button type="button" class="bottom-nav-item" data-view="news"><span>▤</span><span data-i18n="navNews">News</span></button>
+  <button type="button" class="bottom-nav-item" id="bottomNavSettings"><span>⚙</span><span data-i18n="btnSettings">Settings</span></button>
+</nav>
+
+<!-- Instrument panel template -->
+<template id="instrumentTemplate">
+  <article class="instrument-panel" data-symbol="">
+    <div class="panel-head">
+      <div class="panel-title">
+        <span class="symbol-icon"></span>
+        <div>
+          <h2 class="symbol-name"></h2>
+          <span class="symbol-desc"></span>
+        </div>
+      </div>
+      <div class="panel-price">
+        <span class="price-value">—</span>
+        <span class="price-change"></span>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <div class="gauge-col">
+        <div class="gauge-wrap">
+          <svg class="gauge-svg" viewBox="0 0 200 120" aria-hidden="true">
+            <path class="gauge-track" d="M20,110 A80,80 0 0 1 180,110" />
+            <path class="gauge-fill" d="M20,110 A80,80 0 0 1 180,110" />
+            <line class="gauge-needle" x1="100" y1="110" x2="100" y2="40" />
+            <circle class="gauge-hub" cx="100" cy="110" r="6" />
+          </svg>
+          <div class="gauge-labels">
+            <span data-i18n="gaugeSell">JUAL</span>
+            <span data-i18n="gaugeNeutral">NETRAL</span>
+            <span data-i18n="gaugeBuy">BELI</span>
+          </div>
+        </div>
+        <div class="signal-badge" data-state="neutral">
+          <span class="signal-badge-dot"></span>
+          <span class="signal-badge-text" data-i18n="badgeAnalyzing">Menganalisis…</span>
+        </div>
+        <div class="confluence-score">
+          <span class="score-label" data-i18n="scoreLabel">Skor Konfluensi</span>
+          <span class="score-value">0</span>
+        </div>
+        <div class="mini-indicators">
+          <div class="mini-indicator">
+            <span class="mini-label" data-i18n="trendLabel">Trend</span>
+            <span class="mini-value trend-value">—</span>
+          </div>
+          <div class="mini-indicator">
+            <span class="mini-label" data-i18n="rsiLabel">RSI(14)</span>
+            <span class="mini-value rsi-value">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-col">
+        <canvas class="price-chart" width="640" height="180"></canvas>
+        <canvas class="ao-chart" width="640" height="90"></canvas>
+      </div>
+
+      <div class="fib-col">
+        <h3 data-i18n="fibHeader">Level Fibonacci</h3>
+        <div class="fib-ladder"></div>
+      </div>
+    </div>
+
+    <div class="panel-reasoning">
+      <h3 data-i18n="reasoningHeader">Alasan Sinyal</h3>
+      <ul class="reasoning-list"></ul>
+      <div class="trade-plan">
+        <div><span data-i18n="planEntry">Entry</span><strong class="plan-entry">—</strong></div>
+        <div><span data-i18n="planSL">Stop Loss</span><strong class="plan-sl">—</strong></div>
+        <div><span data-i18n="planTP">Take Profit</span><strong class="plan-tp">—</strong></div>
+        <div><span data-i18n="planRR">Risk : Reward</span><strong class="plan-rr">—</strong></div>
+      </div>
+    </div>
+  </article>
+</template>
+
+<!-- Settings modal -->
+<div class="modal-backdrop" id="settingsModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <div class="modal-head">
+      <h2 id="settingsTitle" data-i18n="modalTitle">Pengaturan Data</h2>
+      <button class="modal-close" id="closeSettings" type="button" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+<p class="modal-hint" data-i18n="modalDataHint">Sumber market data ditentukan otomatis oleh backend. Tidak ada data sintetis/fake data yang ditampilkan.</p>
+      <label for="pivotInput" data-i18n="modalPivot">Sensitivitas Pivot (bar kiri/kanan)</label>
+      <input type="number" id="pivotInput" min="2" max="10" value="4" />
+      <p class="modal-hint" data-i18n="modalPivotHint">Semakin kecil, semakin sensitif.</p>
+
+      <label for="toleranceInput" data-i18n="modalTolerance">Toleransi Zona Fibonacci (%)</label>
+      <input type="number" id="toleranceInput" min="0.05" max="2" step="0.05" value="0.35" />
+      <p class="modal-hint" data-i18n="modalToleranceHint">Jarak maksimum harga ke level Fibonacci.</p>
+
+      <div class="install-panel">
+        <div><strong>📱 Install App</strong><p class="modal-hint">Android: gunakan prompt Install / Add to Home Screen. iPhone: Share → Add to Home Screen → Add. Desktop: gunakan tombol Install di address bar jika tersedia.</p></div>
+        <button class="btn-ghost" id="installApp" type="button">Install App</button>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-primary" id="saveSettings" type="button" data-i18n="btnSaveSettings">Simpan &amp; Muat Ulang</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/indicators.js"></script>
+<script src="js/api.js"></script>
+<script src="js/signalEngine.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/education.js"></script>
+<script src="js/news.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+<script>if ("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "confluence-desk",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Terminal sinyal trading XAUUSD, EURUSD, GBPUSD & BTCUSD berbasis divergensi Awesome Oscillator dan Fibonacci, dengan data real-time TwelveData.",
+  "engines": {
+    "node": ">=18.x"
+  }
+}
