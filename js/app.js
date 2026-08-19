@@ -10,11 +10,23 @@
   let resizeTimer = null;
   let newsLoaded = false;
   let deferredInstallPrompt = null;
-  const lastResults = {}; // instId -> { result, candles }
+  const lastResults = {};
+
+  async function promptInstall() {
+    if (!deferredInstallPrompt) {
+      alert("iPhone: Share → Add to Home Screen → Add. Android/Desktop: gunakan opsi Install/Add to Home Screen browser.");
+      return;
+    }
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+  } // instId -> { result, candles }
 
   function getTimeframeConfig() {
     const value = document.getElementById("timeframeSelect").value;
-    return CONFIG.TIMEFRAMES.find((tf) => tf.value === value) || CONFIG.TIMEFRAMES.find((tf) => tf.value === CONFIG.DEFAULTS.timeframe);
+    const tf = CONFIG.TIMEFRAMES.find((item) => item.value === value) || CONFIG.TIMEFRAMES.find((item) => item.value === CONFIG.DEFAULTS.timeframe);
+    document.querySelectorAll(".terminal-timeframes span").forEach((el) => el.classList.toggle("active", el.textContent === tf.label));
+    return tf;
   }
 
   function getSettings() {
@@ -145,8 +157,10 @@
     });
 
     document.getElementById("newsRefresh").addEventListener("click", () => News.load());
-    window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); deferredInstallPrompt = e; const btn=document.getElementById("installApp"); if(btn) btn.hidden=false; });
-    document.getElementById("installApp").addEventListener("click", async () => { if (!deferredInstallPrompt) { alert("iPhone: Share → Add to Home Screen → Add. Android/Desktop: gunakan opsi Install/Add to Home Screen browser."); return; } deferredInstallPrompt.prompt(); await deferredInstallPrompt.userChoice; deferredInstallPrompt=null; });
+    window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); deferredInstallPrompt = e; });
+    document.getElementById("installApp").addEventListener("click", promptInstall);
+    document.getElementById("installAppTop").addEventListener("click", promptInstall);
+    document.querySelectorAll("[data-view='education']").forEach((btn) => btn.addEventListener("click", () => { UI.switchView("education"); Education.render(); }));
 
     wireSidebarNav();
 

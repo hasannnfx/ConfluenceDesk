@@ -42,11 +42,25 @@ const UI = {
     const label = document.getElementById("statusText");
     dot.className = "status-dot " + state;
     label.textContent = I18N.t(i18nKey, vars);
+
+    const heroChip = document.getElementById("heroConnection");
+    const heroDot = heroChip?.querySelector("i");
+    const heroText = document.getElementById("heroConnectionText");
+    const health = document.getElementById("healthMarket");
+    if (heroChip) heroChip.dataset.state = state;
+    if (heroDot) heroDot.style.background = state === "live" ? "var(--success)" : state === "error" ? "var(--danger)" : "var(--warning)";
+    if (heroText) heroText.textContent = state === "live" ? "Connected" : state === "cached" ? "Cached data" : state === "error" ? "Unavailable" : "Connecting…";
+    if (health) {
+      health.innerHTML = `<i class="${state === "live" ? "live" : ""}"></i> ${state === "live" ? "Connected" : state === "cached" ? "Delayed / Cached" : state === "error" ? "Unavailable" : "Connecting"}`;
+    }
   },
 
   setLastUpdate(date) {
+    const time = date.toLocaleTimeString(I18N.lang === "id" ? "id-ID" : "en-US");
     const el = document.getElementById("lastUpdate");
-    el.textContent = I18N.t("lastUpdatePrefix", { time: date.toLocaleTimeString(I18N.lang === "id" ? "id-ID" : "en-US") });
+    el.textContent = I18N.t("lastUpdatePrefix", { time });
+    const health = document.getElementById("healthUpdate");
+    if (health) health.textContent = time;
   },
 
   renderInstrument(instId, result, meta) {
@@ -94,11 +108,41 @@ const UI = {
     panel.querySelector(".plan-tp").textContent = plan ? plan.takeProfit.toFixed(decimals) : "—";
     panel.querySelector(".plan-rr").textContent = plan ? `1 : ${plan.riskReward.toFixed(2)}` : "—";
 
+    if (instId === "XAUUSD") this._updateFocus(result, decimals);
+
     Charts.drawPriceChart(panel.querySelector(".price-chart"), meta.candles, result.fib, result.signal);
     Charts.drawAOHistogram(panel.querySelector(".ao-chart"), result.ao);
 
     if (result.signal !== "neutral") {
       this._maybeLogSignal(instId, result, decimals);
+    }
+  },
+
+  _updateFocus(result, decimals) {
+    const signal = result.signal === "buy" ? "BUY" : result.signal === "sell" ? "SELL" : "WAITING";
+    const signalEl = document.getElementById("focusSignal");
+    const dot = document.getElementById("focusStateDot");
+    const confidence = document.getElementById("focusConfidence");
+    const bar = document.getElementById("focusConfidenceBar");
+    if (signalEl) signalEl.textContent = signal;
+    if (dot) dot.className = "signal-state-dot " + (result.signal === "neutral" ? "" : result.signal);
+    if (confidence) confidence.textContent = `${result.score}%`;
+    if (bar) bar.style.width = `${result.score}%`;
+
+    const div = result.divergences?.[0];
+    const fib = result.fib;
+    const { level: nearest, distancePct } = fib ? Indicators.nearestFibLevel(fib.levels, result.lastPrice) : { level: null, distancePct: Infinity };
+    const set = (id, text, state) => {
+      const el = document.getElementById(id); if (el) el.textContent = text;
+      const parent = el?.parentElement?.parentElement; if (parent) { const em = parent.querySelector("em"); if (em) { em.textContent = state === "ok" ? "CONFIRMED" : state === "bad" ? "INVALID" : "WAIT"; em.className = state === "ok" ? "ok" : state === "bad" ? "bad" : ""; } }
+    };
+    set("focusAO", div ? `${div.type === "bullish" ? "Bullish" : "Bearish"} divergence detected` : "No divergence detected", div ? "ok" : "wait");
+    set("focusFib", nearest ? `${(nearest.ratio * 100).toFixed(1)}% · ${distancePct.toFixed(2)}% away` : "Waiting for Fibonacci swing", fib ? "ok" : "wait");
+    set("focusTrend", result.trendUp === null ? "Trend data unavailable" : result.trendUp ? "Bullish EMA trend" : "Bearish EMA trend", result.trendUp === null ? "wait" : "ok");
+    const reason = document.getElementById("focusReason");
+    if (reason) {
+      const last = result.reasons?.[result.reasons.length - 1];
+      reason.textContent = last ? I18N.reason(last.key, last.vars) : "Market conditions are being analyzed…";
     }
   },
 
