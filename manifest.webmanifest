@@ -1,14 +1,24 @@
 {
-  "name": "Confluence Desk",
-  "short_name": "Confluence",
-  "description": "Market Intelligence Dashboard — AO Divergence × Fibonacci",
+  "name": "Confluence Desk \u2014 Market Intelligence Dashboard",
+  "short_name": "Confluence Desk",
+  "description": "Premium market intelligence dashboard powered by AO Divergence, Fibonacci and Market Structure.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0b0e13",
-  "theme_color": "#0b0e13",
+  "background_color": "#05070B",
+  "theme_color": "#05070B",
   "icons": [
-    {"src":"/assets/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
-    {"src":"/assets/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+    {
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }

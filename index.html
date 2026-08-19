@@ -8,299 +8,207 @@
 <meta name="apple-mobile-web-app-title" content="Confluence Desk" />
 <link rel="manifest" href="manifest.webmanifest" />
 <link rel="apple-touch-icon" href="assets/icon-192.png" />
-<title>Confluence Desk — AO Divergence × Fibonacci</title>
-<meta name="description" content="Sinyal trading otomatis untuk XAUUSD, EURUSD, GBPUSD, dan BTCUSD berdasarkan divergensi Awesome Oscillator, Fibonacci, trend EMA dan RSI, dengan data real-time dari TwelveData." />
+<title>Confluence Desk — Market Intelligence Dashboard</title>
+<meta name="description" content="Modern market analysis dashboard powered by AO Divergence, Fibonacci and Market Structure." />
 <link rel="canonical" href="https://www.hsnsf11h.my.id/" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Confluence Desk" />
-<meta property="og:title" content="Confluence Desk — Sinyal Trading XAUUSD, EURUSD, GBPUSD & BTCUSD" />
-<meta property="og:description" content="Sinyal trading otomatis dari konfluensi AO Divergence, Fibonacci, trend EMA dan RSI, data real-time TwelveData." />
+<meta property="og:title" content="Confluence Desk — Market Intelligence Dashboard" />
+<meta property="og:description" content="Modern market analysis dashboard powered by AO Divergence, Fibonacci and Market Structure." />
 <meta property="og:image" content="assets/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:locale" content="id_ID" />
 <meta property="og:url" content="https://www.hsnsf11h.my.id/" />
-
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Confluence Desk — Trading Signal Terminal" />
-<meta name="twitter:description" content="Sinyal XAUUSD, EURUSD, GBPUSD & BTCUSD berbasis konfluensi AO Divergence × Fibonacci × EMA × RSI." />
-<meta name="twitter:image" content="assets/og-image.png" />
-
-<meta name="theme-color" content="#0a0c11" />
+<meta name="theme-color" content="#05070B" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/style.css" />
 <script>
-  // Terapkan tema tersimpan sedini mungkin, sebelum CSS/paint pertama,
-  // supaya tidak ada kedipan (flash) dari dark ke light saat load.
-  (function () {
-    try {
-      var t = localStorage.getItem("cd_theme");
-      document.documentElement.setAttribute("data-theme", t === "light" ? "light" : "dark");
-    } catch (e) {}
-  })();
+(function(){try{var t=localStorage.getItem("cd_theme");document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark")}catch(e){}})();
 </script>
 </head>
 <body>
-
+<div class="ambient ambient-a" aria-hidden="true"></div>
+<div class="ambient ambient-b" aria-hidden="true"></div>
 <div class="noise-overlay" aria-hidden="true"></div>
 
 <div class="app-shell">
-
-  <!-- Sidebar (desktop) / bottom nav (mobile) -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-brand">
-      <svg class="brand-mark" width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="14" cy="14" r="12.5" stroke="var(--gold)" stroke-width="1.5"/>
-        <path d="M7 16.5L11.5 10L15 14.5L21 7.5" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="21" cy="7.5" r="1.6" fill="var(--gold)"/>
-      </svg>
+      <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
       <div class="sidebar-brand-text">
-        <span class="brand-title">Confluence Desk</span>
-        <span class="brand-sub" data-i18n="brandSub">Mesin AO Divergence × Fibonacci</span>
+        <span class="brand-title">CONFLUENCE <b>DESK</b></span>
+        <span class="brand-sub">AO × FIBONACCI × MARKET STRUCTURE</span>
       </div>
     </div>
-
-    <nav class="sidebar-nav" id="sidebarNav">
-      <button type="button" class="nav-item active" data-view="dashboard">
-        <svg viewBox="0 0 22 22" width="19" height="19"><path d="M3 13.5l4-5 3.5 3 5.5-7 3 3.5" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 17.5h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-        <span data-i18n="navDashboard">Dasbor</span>
-      </button>
-      <button type="button" class="nav-item" data-view="education">
-        <svg viewBox="0 0 22 22" width="19" height="19"><path d="M4 5.5c2.2-1.3 5-1.3 7 0 2-1.3 4.8-1.3 7 0v11c-2.2-1.3-5-1.3-7 0-2-1.3-4.8-1.3-7 0v-11z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"/><path d="M11 5.5v11" stroke="currentColor" stroke-width="1.6"/></svg>
-        <span data-i18n="navEducation">Belajar Trading</span>
-      </button>
-      <button type="button" class="nav-item" data-view="news">
-        <svg viewBox="0 0 22 22" width="19" height="19"><rect x="3.5" y="4.5" width="15" height="13" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M6.5 8h6M6.5 11h9M6.5 14h9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-        <span data-i18n="navNews">Berita</span>
-      </button>
+    <nav class="sidebar-nav" id="sidebarNav" aria-label="Primary">
+      <button type="button" class="nav-item active" data-view="dashboard"><span class="nav-icon">⌁</span><span data-i18n="navDashboard">Dashboard</span></button>
+      <button type="button" class="nav-item" data-view="education"><span class="nav-icon">◫</span><span data-i18n="navEducation">Learn</span></button>
+      <button type="button" class="nav-item" data-view="news"><span class="nav-icon">◌</span><span data-i18n="navNews">News</span></button>
     </nav>
-
     <div class="sidebar-footer">
-      <button type="button" class="btn-ghost sidebar-settings" id="openSettings" data-i18n="btnSettings">Pengaturan</button>
+      <div class="sidebar-credit">BUILT BY HSN</div>
+      <button type="button" class="btn-ghost sidebar-settings" id="openSettings" data-i18n="btnSettings">Settings</button>
     </div>
   </aside>
 
   <div class="main-col">
-
     <header class="topbar">
+      <div class="topbar-brand-mobile">CONFLUENCE <b>DESK</b></div>
       <div class="topbar-status" id="connectionStatus">
         <span class="status-dot" id="statusDot"></span>
-        <span id="statusText" data-i18n="statusIdle">Belum terhubung</span>
+        <span id="statusText" data-i18n="statusIdle">MARKET DATA</span>
       </div>
-
       <div class="topbar-actions">
-        <button class="btn-icon" id="langToggle" type="button" title="Switch language">
-          <span id="langToggleLabel">EN</span>
-        </button>
-        <button class="btn-icon" id="themeToggle" type="button">
-          <span id="themeToggleIcon">☾</span>
-        </button>
+        <button class="topbar-link" type="button" id="langToggle"><span id="langToggleLabel">EN</span></button>
+        <button class="topbar-link" type="button" id="themeToggle" aria-label="Toggle theme"><span id="themeToggleIcon">☾</span></button>
+        <button class="btn-primary top-install" type="button" id="installAppTop">Install App</button>
       </div>
     </header>
 
     <main class="desk">
       <section class="hero" id="top">
-        <div>
-          <span class="eyebrow">MARKET INTELLIGENCE DASHBOARD</span>
-          <h1>CONFLUENCE DESK</h1>
-          <p>AO Divergence × Fibonacci</p>
-          <small>Pantau confluence market dalam satu layar.</small>
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="live-mini-dot"></span> MARKET INTELLIGENCE DASHBOARD</div>
+          <h1>CONFLUENCE <span>DESK</span></h1>
+          <p class="hero-tagline">AO × Fibonacci × Market Structure</p>
+          <p class="hero-description">Real-time market analysis designed to turn price action, momentum and Fibonacci confluence into a clear decision context.</p>
+          <div class="hero-meta">
+            <span class="connection-chip" id="heroConnection"><i></i><b>MARKET DATA</b> <em id="heroConnectionText">Connecting…</em></span>
+            <span class="last-update" id="lastUpdate" data-i18n="lastUpdateNone">Waiting for update</span>
+          </div>
         </div>
-        <div class="hero-disclaimer">Analisis bersifat informatif dan bukan nasihat keuangan.</div>
+        <div class="hero-orbit" aria-hidden="true">
+          <div class="orbit-ring r1"></div><div class="orbit-ring r2"></div><div class="orbit-ring r3"></div>
+          <div class="orbit-core"><span>CD</span><small>V2</small></div>
+        </div>
       </section>
 
-      <!-- ============ DASHBOARD VIEW ============ -->
       <section class="view" id="view-dashboard">
         <section class="control-strip">
-          <div class="control-group">
-            <label for="timeframeSelect" data-i18n="labelTimeframe">Timeframe</label>
-            <select id="timeframeSelect">
-              <option value="1min">M1</option>
-                            <option value="5min">M5</option>
-              <option value="15min">M15</option>
-              <option value="30min">M30</option>
-              <option value="1h" selected>H1</option>
-              <option value="4h">H4</option>
-                          </select>
-          </div>
-          <div class="control-group">
-            <label for="refreshSelect" data-i18n="labelRefresh">Refresh</label>
-            <select id="refreshSelect">
-              <option value="0" data-i18n="optRefreshManual">Manual</option>
-              <option value="30000" data-i18n="opt30s">30 detik</option>
-              <option value="60000" selected data-i18n="opt1m">1 menit</option>
-              <option value="300000" data-i18n="opt5m">5 menit</option>
-            </select>
-          </div>
-          <button class="btn-primary" id="refreshNow" type="button" data-i18n="btnRefreshNow">Tarik Data Terbaru</button>
-          <div class="last-update" id="lastUpdate" data-i18n="lastUpdateNone">Belum ada data</div>
+          <div class="control-group"><label for="timeframeSelect" data-i18n="labelTimeframe">Timeframe</label><select id="timeframeSelect"><option value="1min">M1</option><option value="5min">M5</option><option value="15min">M15</option><option value="30min">M30</option><option value="1h" selected>H1</option><option value="4h">H4</option></select></div>
+          <div class="control-group"><label for="refreshSelect" data-i18n="labelRefresh">Refresh</label><select id="refreshSelect"><option value="0" data-i18n="optRefreshManual">Manual</option><option value="30000" data-i18n="opt30s">30s</option><option value="60000" selected data-i18n="opt1m">1m</option><option value="300000" data-i18n="opt5m">5m</option></select></div>
+          <button class="btn-primary" id="refreshNow" type="button" data-i18n="btnRefreshNow">Refresh Market Data</button>
+          <span class="control-note">LIVE ANALYSIS</span>
         </section>
 
-        <section class="section-heading" id="market"><div><span class="eyebrow">LIVE MARKET</span><h2>MARKET OVERVIEW</h2></div><span class="section-note">XAUUSD · EURUSD · GBPUSD · BTCUSD</span></section>
-        <section class="instrument-grid" id="instrumentGrid"></section>
+        <section class="section-heading" id="market">
+          <div><span class="eyebrow">MARKET SNAPSHOT</span><h2>Market Overview</h2></div>
+          <span class="section-note">XAUUSD · EURUSD · GBPUSD · BTCUSD</span>
+        </section>
+        <section class="instrument-grid" id="instrumentGrid" aria-live="polite"></section>
 
-        <section class="dashboard-signal-grid" id="signals">
-          <div class="focus-card"><div class="card-head"><div><span class="eyebrow">CONFLUENCE SIGNAL</span><h2>Signal Engine</h2></div><span class="focus-state">WAITING</span></div><p>AO Divergence × Fibonacci × Market Structure</p><div class="signal-checks"><span>AO Divergence ✓</span><span>Fibonacci Zone ✓</span><span>Market Structure ✓</span></div></div>
-          <div class="focus-card compact"><div class="card-head"><div><span class="eyebrow">SYSTEM</span><h2>Data Health</h2></div><span class="status-pill">Secure Backend</span></div><p>Provider dipilih otomatis oleh backend. Tidak ada API key di browser.</p></div>
+        <section class="terminal-heading" id="signals">
+          <div><span class="eyebrow">DECISION LAYER</span><h2>Signal Engine</h2></div>
+          <span class="section-note">Follows existing calculation logic</span>
+        </section>
+        <section class="terminal-layout">
+          <div class="terminal-chart-card">
+            <div class="terminal-head">
+              <div><span class="terminal-symbol">XAU/USD</span><span class="terminal-name">Gold / US Dollar</span></div>
+              <div class="terminal-timeframes" aria-label="Timeframe"><span>M1</span><span>M5</span><span>M15</span><span class="active">H1</span><span>H4</span></div>
+            </div>
+            <div class="terminal-chart-placeholder"><div class="chart-label">MARKET TERMINAL</div><div class="chart-gridline g1"></div><div class="chart-gridline g2"></div><div class="chart-gridline g3"></div><div class="chart-glow"></div></div>
+            <div class="terminal-footer"><span>AO Divergence</span><span>Fibonacci</span><span>Trend / RSI</span><span>Live data</span></div>
+          </div>
+          <aside class="signal-engine-card" id="signalEngineCard">
+            <div class="card-head"><div><span class="eyebrow">SIGNAL ENGINE</span><h2 id="focusSignal">WAITING</h2></div><span class="signal-state-dot" id="focusStateDot"></span></div>
+            <p class="signal-subtitle">AO × Fibonacci × Market Structure</p>
+            <div class="confidence-block"><div><span>CONFIDENCE</span><strong id="focusConfidence">0%</strong></div><div class="confidence-track"><i id="focusConfidenceBar"></i></div></div>
+            <div class="confluence-list">
+              <div><span class="confluence-icon">◈</span><div><b>AO DIVERGENCE</b><small id="focusAO">Waiting for analysis</small></div><em id="focusAOState">WAIT</em></div>
+              <div><span class="confluence-icon">◇</span><div><b>FIBONACCI ZONE</b><small id="focusFib">Waiting for analysis</small></div><em id="focusFibState">WAIT</em></div>
+              <div><span class="confluence-icon">⌁</span><div><b>MARKET TREND</b><small id="focusTrend">Waiting for analysis</small></div><em id="focusTrendState">WAIT</em></div>
+            </div>
+            <div class="why-signal"><span class="eyebrow">WHY THIS SIGNAL?</span><p id="focusReason">Market conditions are being analyzed…</p></div>
+          </aside>
+        </section>
+
+        <section class="health-grid">
+          <div class="health-card"><span class="eyebrow">DATA HEALTH</span><div class="health-row"><span>Market Data</span><b id="healthMarket"><i></i> Connecting</b></div><div class="health-row"><span>Signal Engine</span><b><i class="live"></i> Running</b></div><div class="health-row"><span>Last Update</span><b id="healthUpdate">—</b></div></div>
+          <div class="health-card"><span class="eyebrow">ANALYSIS FLOW</span><div class="flow"><span>Market</span><b>→</b><span>Chart</span><b>→</b><span>Signal</span><b>→</b><span>Confidence</span><b>→</b><span>Reason</span></div><p>Designed to keep the decision path visible without changing the underlying signal calculation.</p></div>
         </section>
 
         <section class="log-panel">
-          <div class="log-panel-head">
-            <h2 data-i18n="logTitle">Riwayat Sinyal</h2>
-            <span class="log-panel-hint" data-i18n="logHint">Sinyal baru muncul saat divergensi AO bertemu zona Fibonacci</span>
-          </div>
-          <div class="signal-log" id="signalLog">
-            <p class="log-empty" data-i18n="logEmpty">Belum ada sinyal tercatat pada sesi ini.</p>
-          </div>
+          <div class="log-panel-head"><div><span class="eyebrow">SIGNAL HISTORY</span><h2 data-i18n="logTitle">Signal History</h2></div><span class="log-panel-hint" data-i18n="logHint">New signals are logged when the existing engine produces them.</span></div>
+          <div class="signal-log" id="signalLog"><p class="log-empty" data-i18n="logEmpty">No signals recorded in this session.</p></div>
+        </section>
+
+        <section class="learn-strip" id="learn">
+          <div><span class="eyebrow">LEARN TRADING</span><h2>Understand the Confluence</h2><p>Explore the existing lessons for AO, divergence, Fibonacci, risk management and trading psychology.</p></div>
+          <button class="btn-ghost" type="button" data-view="education">Open Learn</button>
+        </section>
+
+        <section class="install-strip">
+          <div><span class="eyebrow">YOUR TERMINAL, ANYWHERE</span><h2>Take Confluence Desk with you.</h2><p>Use the existing PWA on iPhone, Android or desktop.</p></div>
+          <button class="btn-primary" type="button" id="installApp">Install App</button>
         </section>
 
         <footer class="desk-footer">
-          <p data-i18n="footerDisclaimer">Analisis bersifat informatif dan bukan nasihat keuangan.</p><p class="creator-credit">CONFLUENCE DESK · Built by Hasan Saefulah · © 2026</p>
+          <div><strong>CONFLUENCE DESK</strong><span>AO × FIBONACCI × MARKET STRUCTURE</span></div>
+          <div><span>Market analysis platform.</span><span>Built by HSN · © 2026</span></div>
+          <p data-i18n="footerDisclaimer">Confluence Desk provides market analysis for informational and educational purposes only. It is not financial advice.</p>
         </footer>
       </section>
 
-      <!-- ============ EDUCATION VIEW ============ -->
       <section class="view hidden" id="view-education">
-        <div class="view-header">
-          <h1 data-i18n="eduTitle">Belajar Trading dari Nol</h1>
-          <p data-i18n="eduHint">Materi dasar sebelum mengandalkan sinyal — pahami dulu konsepnya, baru gunakan dasbor.</p>
-          <div class="edu-progress">
-            <div class="edu-progress-track"><div class="edu-progress-fill" id="eduProgressBar"></div></div>
-            <span id="eduProgressText"></span>
-          </div>
-        </div>
+        <div class="view-header"><span class="eyebrow">LEARN TRADING</span><h1 data-i18n="eduTitle">Belajar Trading dari Nol</h1><p data-i18n="eduHint">Materi dasar sebelum mengandalkan sinyal — pahami dulu konsepnya, baru gunakan dasbor.</p><div class="edu-progress"><div class="edu-progress-track"><div class="edu-progress-fill" id="eduProgressBar"></div></div><span id="eduProgressText"></span></div></div>
         <div class="lesson-list" id="educationList"></div>
       </section>
 
-      <!-- ============ NEWS VIEW ============ -->
       <section class="view hidden" id="view-news">
-        <div class="view-header">
-          <h1 data-i18n="newsTitle">Berita Pasar Terbaru</h1>
-          <p data-i18n="newsHint">Berita ekonomi dan pasar dari KONTAN.CO.ID.</p>
-          <button class="btn-ghost" id="newsRefresh" type="button" data-i18n="newsRefresh">Muat Ulang Berita</button>
-        </div>
+        <div class="view-header"><span class="eyebrow">MARKET CONTEXT</span><h1 data-i18n="newsTitle">Berita Pasar Terbaru</h1><p data-i18n="newsHint">Berita ekonomi dan pasar dari KONTAN.CO.ID.</p><button class="btn-ghost" id="newsRefresh" type="button" data-i18n="newsRefresh">Muat Ulang Berita</button></div>
         <div class="news-list" id="newsList"></div>
       </section>
-
     </main>
   </div>
 </div>
 
-<!-- Mobile bottom nav -->
-<nav class="bottom-nav" id="bottomNav">
-  <button type="button" class="bottom-nav-item active" data-scroll="top"><span>⌂</span><span>Home</span></button>
-  <button type="button" class="bottom-nav-item" data-scroll="market"><span>◈</span><span>Market</span></button>
-  <button type="button" class="bottom-nav-item" data-scroll="signals"><span>◎</span><span>Signals</span></button>
-  <button type="button" class="bottom-nav-item" data-view="news"><span>▤</span><span data-i18n="navNews">News</span></button>
-  <button type="button" class="bottom-nav-item" id="bottomNavSettings"><span>⚙</span><span data-i18n="btnSettings">Settings</span></button>
+<nav class="bottom-nav" id="bottomNav" aria-label="Mobile navigation">
+  <button type="button" class="bottom-nav-item active" data-scroll="top"><span>⌂</span><small>Home</small></button>
+  <button type="button" class="bottom-nav-item" data-scroll="market"><span>◈</span><small>Markets</small></button>
+  <button type="button" class="bottom-nav-item" data-scroll="signals"><span>⚡</span><small>Signals</small></button>
+  <button type="button" class="bottom-nav-item" data-view="news"><span>◌</span><small>News</small></button>
+  <button type="button" class="bottom-nav-item" id="bottomNavSettings"><span>☰</span><small>More</small></button>
 </nav>
 
-<!-- Instrument panel template -->
 <template id="instrumentTemplate">
-  <article class="instrument-panel" data-symbol="">
-    <div class="panel-head">
-      <div class="panel-title">
-        <span class="symbol-icon"></span>
-        <div>
-          <h2 class="symbol-name"></h2>
-          <span class="symbol-desc"></span>
-        </div>
-      </div>
-      <div class="panel-price">
-        <span class="price-value">—</span>
-        <span class="price-change"></span>
-      </div>
+<article class="instrument-panel" data-symbol="">
+  <div class="panel-head">
+    <div class="panel-title"><span class="symbol-icon"></span><div><h2 class="symbol-name"></h2><span class="symbol-desc"></span></div></div>
+    <div class="panel-price"><span class="price-value">—</span><span class="price-change">—</span></div>
+  </div>
+  <div class="market-card-meta"><span>24H MARKET VIEW</span><span class="mini-live"><i></i> LIVE</span></div>
+  <div class="panel-body">
+    <div class="gauge-col">
+      <div class="gauge-wrap"><svg class="gauge-svg" viewBox="0 0 200 120" aria-hidden="true"><path class="gauge-track" d="M20,110 A80,80 0 0 1 180,110"/><path class="gauge-fill" d="M20,110 A80,80 0 0 1 180,110"/><line class="gauge-needle" x1="100" y1="110" x2="100" y2="40"/><circle class="gauge-hub" cx="100" cy="110" r="6"/></svg><div class="gauge-labels"><span>SELL</span><span>WAIT</span><span>BUY</span></div></div>
+      <div class="signal-badge" data-state="neutral"><span class="signal-badge-dot"></span><span class="signal-badge-text" data-i18n="badgeAnalyzing">Analyzing…</span></div>
+      <div class="score-row"><span data-i18n="scoreLabel">Confluence</span><strong class="score-value">0</strong><small>%</small></div>
     </div>
-
-    <div class="panel-body">
-      <div class="gauge-col">
-        <div class="gauge-wrap">
-          <svg class="gauge-svg" viewBox="0 0 200 120" aria-hidden="true">
-            <path class="gauge-track" d="M20,110 A80,80 0 0 1 180,110" />
-            <path class="gauge-fill" d="M20,110 A80,80 0 0 1 180,110" />
-            <line class="gauge-needle" x1="100" y1="110" x2="100" y2="40" />
-            <circle class="gauge-hub" cx="100" cy="110" r="6" />
-          </svg>
-          <div class="gauge-labels">
-            <span data-i18n="gaugeSell">JUAL</span>
-            <span data-i18n="gaugeNeutral">NETRAL</span>
-            <span data-i18n="gaugeBuy">BELI</span>
-          </div>
-        </div>
-        <div class="signal-badge" data-state="neutral">
-          <span class="signal-badge-dot"></span>
-          <span class="signal-badge-text" data-i18n="badgeAnalyzing">Menganalisis…</span>
-        </div>
-        <div class="confluence-score">
-          <span class="score-label" data-i18n="scoreLabel">Skor Konfluensi</span>
-          <span class="score-value">0</span>
-        </div>
-        <div class="mini-indicators">
-          <div class="mini-indicator">
-            <span class="mini-label" data-i18n="trendLabel">Trend</span>
-            <span class="mini-value trend-value">—</span>
-          </div>
-          <div class="mini-indicator">
-            <span class="mini-label" data-i18n="rsiLabel">RSI(14)</span>
-            <span class="mini-value rsi-value">—</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="chart-col">
-        <canvas class="price-chart" width="640" height="180"></canvas>
-        <canvas class="ao-chart" width="640" height="90"></canvas>
-      </div>
-
-      <div class="fib-col">
-        <h3 data-i18n="fibHeader">Level Fibonacci</h3>
-        <div class="fib-ladder"></div>
-      </div>
-    </div>
-
-    <div class="panel-reasoning">
-      <h3 data-i18n="reasoningHeader">Alasan Sinyal</h3>
-      <ul class="reasoning-list"></ul>
-      <div class="trade-plan">
-        <div><span data-i18n="planEntry">Entry</span><strong class="plan-entry">—</strong></div>
-        <div><span data-i18n="planSL">Stop Loss</span><strong class="plan-sl">—</strong></div>
-        <div><span data-i18n="planTP">Take Profit</span><strong class="plan-tp">—</strong></div>
-        <div><span data-i18n="planRR">Risk : Reward</span><strong class="plan-rr">—</strong></div>
-      </div>
-    </div>
-  </article>
+    <div class="chart-col"><div class="chart-frame"><canvas class="price-chart" width="640" height="210"></canvas></div><div class="ao-label">AO MOMENTUM</div><canvas class="ao-chart" width="640" height="70"></canvas></div>
+    <div class="fib-col"><div class="eyebrow">FIBONACCI</div><h3 data-i18n="fibHeader">Level Fibonacci</h3><div class="fib-ladder"></div></div>
+  </div>
+  <div class="panel-reasoning">
+    <div><div class="eyebrow">CONFLUENCE</div><h3 data-i18n="reasoningHeader">Why this signal</h3><ul class="reasoning-list"></ul></div>
+    <div class="trade-plan"><div><span data-i18n="planEntry">Entry</span><strong class="plan-entry">—</strong></div><div><span data-i18n="planSL">Stop Loss</span><strong class="plan-sl">—</strong></div><div><span data-i18n="planTP">Take Profit</span><strong class="plan-tp">—</strong></div><div><span data-i18n="planRR">Risk : Reward</span><strong class="plan-rr">—</strong></div></div>
+  </div>
+</article>
 </template>
 
-<!-- Settings modal -->
 <div class="modal-backdrop" id="settingsModal">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
-    <div class="modal-head">
-      <h2 id="settingsTitle" data-i18n="modalTitle">Pengaturan Data</h2>
-      <button class="modal-close" id="closeSettings" type="button" aria-label="Close">✕</button>
-    </div>
-    <div class="modal-body">
-<p class="modal-hint" data-i18n="modalDataHint">Sumber market data ditentukan otomatis oleh backend. Tidak ada data sintetis/fake data yang ditampilkan.</p>
-      <label for="pivotInput" data-i18n="modalPivot">Sensitivitas Pivot (bar kiri/kanan)</label>
-      <input type="number" id="pivotInput" min="2" max="10" value="4" />
-      <p class="modal-hint" data-i18n="modalPivotHint">Semakin kecil, semakin sensitif.</p>
-
-      <label for="toleranceInput" data-i18n="modalTolerance">Toleransi Zona Fibonacci (%)</label>
-      <input type="number" id="toleranceInput" min="0.05" max="2" step="0.05" value="0.35" />
-      <p class="modal-hint" data-i18n="modalToleranceHint">Jarak maksimum harga ke level Fibonacci.</p>
-
-      <div class="install-panel">
-        <div><strong>📱 Install App</strong><p class="modal-hint">Android: gunakan prompt Install / Add to Home Screen. iPhone: Share → Add to Home Screen → Add. Desktop: gunakan tombol Install di address bar jika tersedia.</p></div>
-        <button class="btn-ghost" id="installApp" type="button">Install App</button>
-      </div>
-      <div class="modal-actions">
-        <button class="btn-primary" id="saveSettings" type="button" data-i18n="btnSaveSettings">Simpan &amp; Muat Ulang</button>
-      </div>
-    </div>
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+  <div class="modal-head"><div><span class="eyebrow">SYSTEM SETTINGS</span><h2 id="settingsTitle" data-i18n="modalTitle">Pengaturan Data</h2></div><button class="modal-close" id="closeSettings" type="button" aria-label="Close">×</button></div>
+  <div class="modal-body">
+    <p class="modal-hint" data-i18n="modalDataHint">Sumber market data ditentukan otomatis oleh backend. Tidak ada data sintetis/fake data yang ditampilkan.</p>
+    <label for="pivotInput" data-i18n="modalPivot">Sensitivitas Pivot (bar kiri/kanan)</label><input type="number" id="pivotInput" min="2" max="10" value="4" /><p class="modal-hint" data-i18n="modalPivotHint">Semakin kecil, semakin sensitif.</p>
+    <label for="toleranceInput" data-i18n="modalTolerance">Toleransi Zona Fibonacci (%)</label><input type="number" id="toleranceInput" min="0.05" max="2" step="0.05" value="0.35" /><p class="modal-hint" data-i18n="modalToleranceHint">Jarak maksimum harga ke level Fibonacci.</p>
+    <div class="install-panel"><div><strong>Install App</strong><p class="modal-hint">Android: gunakan prompt Install / Add to Home Screen. iPhone: Share → Add to Home Screen → Add. Desktop: gunakan opsi Install di address bar jika tersedia.</p></div></div>
+    <div class="modal-actions"><button class="btn-primary" id="saveSettings" type="button" data-i18n="btnSaveSettings">Simpan &amp; Muat Ulang</button></div>
   </div>
+</div>
 </div>
 
 <script src="js/config.js"></script>

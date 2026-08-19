@@ -50,4 +50,7 @@ AO Divergence, Fibonacci, pivot sensitivity, Fibonacci tolerance, market structu
 - Candlestick/AO canvas existing tetap menjadi chart engine; redesign tidak mengganti library chart.
 
 ## Creator
-Built by Hasan Saefulah · © 2026
+Built by HSN · © 2026
+
+## V2 UI upgrade
+The V2 redesign preserves the existing API routes, indicator formulas, signal engine, chart canvas, education, news, PWA, settings and bilingual flow. The upgrade focuses on visual hierarchy, responsive terminal layout, state feedback, confidence/confluence presentation, accessibility, reduced motion and lightweight micro-interactions.

@@ -1,4 +1,4 @@
-const CACHE = 'confluence-desk-shell-v1';
+const CACHE = 'confluence-desk-shell-v2';
 const SHELL = ['/', '/index.html', '/css/style.css', '/js/config.js', '/js/i18n.js', '/js/theme.js', '/js/indicators.js', '/js/api.js', '/js/signalEngine.js', '/js/charts.js', '/js/education.js', '/js/news.js', '/js/ui.js', '/js/app.js', '/assets/favicon.svg', '/assets/icon-192.png', '/assets/icon-512.png'];
 self.addEventListener('install', event => event.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())));
 self.addEventListener('activate', event => event.waitUntil(self.clients.claim()));
